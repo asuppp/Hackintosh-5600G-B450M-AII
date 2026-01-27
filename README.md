@@ -1,0 +1,2 @@
+# Hackintosh-5600G-B450M-AII
+MacOS Tahoe 26.2 5600G B450M-AII
