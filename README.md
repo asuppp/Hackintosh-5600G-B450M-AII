@@ -23,15 +23,16 @@
 * **Ethernet:** Realtek RTL8111
 
 ---
-### ✅ Funciona:
+### ✅ Qué funciona:
 * Aceleración gráfica (iGPU mediante NootedRed).
 * Ethernet (Internet por cable).
 * Gestión de energía y reposo.
 * Puertos USB traseros.
 * Audio Entrada y Salida (**con parche**)
-* App Store / iMessage (con seriales propios).
+* App Store (con seriales propios).
 
 ### ❌ No funciona / Limitaciones:
+* **iMessage:** Es necesario serial original, lo cual no es víable usar por riesgo de baneo de icloud.
 * **Audio Nativo en Tahoe:** Requiere parche manual desde **Macos 26.2**.
 * **WiFi / Bluetooth:** No incluidos / añadir kexts según el hardware.
 * **DRM:** Streaming en Safari (Limitaciones de iGPU AMD en contenido protegido).
