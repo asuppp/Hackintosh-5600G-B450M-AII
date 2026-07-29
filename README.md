@@ -5,8 +5,9 @@
 > Esta EFI se realizó usando **OpenCore Auxiliary Tools (OCAT)**.
 * **OpenCore 1.0.6**
 * Sistema estable en **MacOS Tahoe** y posiblemente Sequioa.
-* **Considerar:** Para Sonoma/Sequoia, se recomienda desactivar `AMFIPass.kext`, limpiar boot-args de Tahoe y ajustar el sip en `csr-active-config` a ``00000000`` (valor original).
 * Verbose activado (No muestra logo de Apple), puedes desactivarlo quitando `-v` en `boot-args` para mostrarlo.
+
+* **Considerar:** Para Sonoma/Sequoia, se recomienda desactivar `AMFIPass.kext`, limpiar boot-args de Tahoe y ajustar el sip en `csr-active-config` a ``00000000`` (valor original).
 * **Activar Trim en MacOS:** Mejora rendimiento y evita desgaste de la vida útil del disco. Comando en terminal: ``sudo trimforce enable``
 ---
 
@@ -33,38 +34,39 @@
 
 ### ❌ No funciona / Limitaciones:
 * **iMessage:** Es necesario serial original, lo cual no es víable usar por riesgo de baneo de icloud.
-* **Audio Nativo en Tahoe:** Requiere parche manual desde **Macos 26.2**.
+* **Audio Nativo en Tahoe:** Requiere parche manual desde **MacOS 26.2**.
 * **WiFi / Bluetooth:** No incluidos / añadir kexts según el hardware.
 * **DRM:** Streaming en Safari (Limitaciones de iGPU AMD en contenido protegido).
 
 > [!CAUTION]
+> **Chromium & NootedRed:**
 > 
-> **Chromium & NootedRed:** Navegadores y aplicaciones basados en Chromium como Chrome, Edge o Brave presentan inestabilidad por conflictos de aceleración con la iGPU.
+> Navegadores y aplicaciones basados en Chromium como Chrome, Edge o Brave presentan inestabilidad por conflictos de aceleración con la iGPU.
+> 
 * **Solución:** Deshabilitar la aceleración por hardware de la aplicación mediante Terminal.
 * **Más información:** [chefkiss.dev](https://chefkiss.dev/applehax/nootedred/#chrome-chromium-based-browsers-and-apps-like-sublime-text-cause-graphical-artefacts-amongst-other-problems)
 
 ---
 
 ## Preinstalación
-Ajustar los siguientes valores en **BIOS** para correcto arranque:
+Ajustar los siguientes valores en **BIOS** para arranque correcto:
 
 * Activar:
   - Above 4G Decoding
   - EHCI/XHCI Hand-off
   - AMD-V (SVM Mode).
   - UMA Framebuffer Size: **2G** (Mínimo 1G).
+  
 * Desactivar:
   - Fast Boot
   - Secure Boot
   - CSM.
   - Serial Port
 
-
-> [!NOTE]
-> **Generar propios SMBIOS:**
+ **Generar propios SMBIOS:**
 1. Instala [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS).
 2. Seleccionar el archivo `config.plist`.
-3. Elegir Systemproductname (**de preferencia iMac20,1**) y generar.
+3. Elegir Systemproductname (**de preferencia iMac20,1**), generar.
 4. Generar ROM propia (no aleatoria)
 
 **Mapeo de Puertos USB**
@@ -78,10 +80,9 @@ Ajustar los siguientes valores en **BIOS** para correcto arranque:
 > **El audio no funciona de manera nativa en macOS 26.2 Tahoe debido a cambios recientes por parte de Apple.**
 
 * La EFI ya incluye: `AppleALC.kext`, `AMFIPass.kext` y el `layout-id 11`, pero desde MacOS 26.2 también se necesita un procedimiento más.
-* **Cómo solucionar:**
-  - Instalar MykextInstaller y el KDK correspondiente a tu **Número de Compilación**.
-  - Descarga `AppleHDA.kext` y seleccionalo en la instalación del programa.
-  > Leer [esta guía](https://github.com/Mirone/MyKextInstaller) para el método completo.
+ **Cómo solucionar:**
+> Leer [esta guía](https://github.com/Mirone/MyKextInstaller) para el método completo.
+
 * **Versiones anteriores:** No requieren la solución. Sequoia o Sonoma es nativo con `layout-id 11`.
 * **Alternativas:** En caso de no funcionar, probar otros ID: `1, 3, 13`.
 
