@@ -1,9 +1,9 @@
-# MacOS Tahoe 26.2 5600G + Asus Prime B450M-A II | OpenCore 1.0.6
+# MacOS Tahoe 26.2 5600G + Asus Prime B450M-A II | OpenCore 1.0.7
 
 **NOTA:**
 > [!IMPORTANT]
 > Esta EFI se realizó usando **OpenCore Auxiliary Tools (OCAT)**.
-* **OpenCore 1.0.6**
+* **OpenCore 1.0.7**
 * Sistema estable en **MacOS Tahoe** y posiblemente Sequioa.
 * Verbose activado (No muestra logo de Apple), puedes desactivarlo quitando `-v` en `boot-args` para mostrarlo.
 
