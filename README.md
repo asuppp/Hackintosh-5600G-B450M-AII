@@ -9,12 +9,11 @@
 
 * **Considerar:** Para Sonoma/Sequoia, se recomienda desactivar `AMFIPass.kext`, limpiar boot-args de Tahoe y ajustar el sip en `csr-active-config` a ``00000000`` (valor original).
 * **Activar Trim en MacOS:** Mejora rendimiento y evita desgaste de la vida útil del disco. Comando en terminal: ``sudo trimforce enable``
----
 
 [![Pic-1.png](https://i.postimg.cc/021KHptD/Pic-1.png)](https://postimg.cc/23T51BNS)
 [![Pic_2.png](https://i.postimg.cc/W4yhmrFd/Pic_2.png)](https://postimg.cc/B8xS4jC3)
 
-## Especificaciones de Hardware
+# Hardware
 * **CPU:** AMD Ryzen 5 5600G (Cezanne)
 * **Motherboard:** ASUS Prime B450M-A II (Última versión de BIOS)
 * **GPU:** AMD Radeon Vega Graphics (Integrada)
@@ -22,8 +21,8 @@
 * **Almacenamiento:** SUV400S37120G (KINGSTON SSD 120 GB)
 * **Audio:** Realtek ALC887
 * **Ethernet:** Realtek RTL8111
+<br>
 
----
 ### ✅ Qué funciona:
 * Aceleración gráfica (iGPU mediante NootedRed).
 * Ethernet (Internet por cable).
@@ -38,7 +37,6 @@
 * **WiFi / Bluetooth:** No incluidos / añadir kexts según el hardware.
 * **DRM:** Streaming en Safari (Limitaciones de iGPU AMD en contenido protegido).
 
-> [!CAUTION]
 > **Chromium & NootedRed:**
 > 
 > Navegadores y aplicaciones basados en Chromium como Chrome, Edge o Brave presentan inestabilidad por conflictos de aceleración con la iGPU.
@@ -48,7 +46,7 @@
 
 ---
 
-## Preinstalación
+# Preinstalación
 Ajustar los siguientes valores en **BIOS** para arranque correcto:
 
 * Activar:
@@ -67,28 +65,22 @@ Ajustar los siguientes valores en **BIOS** para arranque correcto:
 1. Instala [GenSMBIOS](https://github.com/corpnewt/GenSMBIOS).
 2. Seleccionar el archivo `config.plist`.
 3. Elegir Systemproductname (**de preferencia iMac20,1**), generar.
-4. Generar ROM propia (no aleatoria)
+4. Usar ROM real propia (no aleatoria).
 
 **Mapeo de Puertos USB**
 * La EFI Incluye `USBMap.kext` para **ASUS B450M-A II**, cubriendo todos los puertos traseros.
-* No todos los puertos podrían funcionar. Se recomienda generar un mapeo propio con [`USBToolBox`](https://github.com/USBToolBox/tool) o intentar el quirk `XhciPortLimit`.
+* No todos los puertos podrían funcionar. Se recomienda generar un mapeo propio con [`USBToolBox`](https://github.com/USBToolBox/tool).
 
 ---
 
-## Posinstalación
-> [!WARNING]
-> **El audio no funciona de manera nativa en macOS 26.2 Tahoe debido a cambios recientes por parte de Apple.**
-
-* La EFI ya incluye: `AppleALC.kext`, `AMFIPass.kext` y el `layout-id 11`, pero desde MacOS 26.2 también se necesita un procedimiento más.
- **Cómo solucionar:**
+ # Posinstalación
+* La EFI ya incluye: `AppleALC.kext`, `AMFIPass.kext` y el `layout-id 11`. En caso de no funcionar:
 > Leer [esta guía](https://github.com/Mirone/MyKextInstaller) para el método completo.
 
 * **Versiones anteriores:** No requieren la solución. Sequoia o Sonoma es nativo con `layout-id 11`.
 * **Alternativas:** En caso de no funcionar, probar otros ID: `1, 3, 13`.
 
----
-
-## NVRAM / Seguridad
+# NVRAM / Seguridad
 * **Para macOS Tahoe 26.2+:** Utilizar `030A0000` en `csr-active-config` para el parche de audio.
 * **Otras versiones:** Se puede revertir a `00000000` (SIP habilitado).
 * **Boot-args:** Incluye `-amfipassbeta` e `ipc_control_port_options=0`.
